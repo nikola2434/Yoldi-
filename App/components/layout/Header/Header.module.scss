@@ -7,6 +7,10 @@
   align-items: center;
   box-sizing: border-box;
   border: $color_strokes-secondary 1px solid;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
   .title {
     margin-left: 20px;
     display: flex;
