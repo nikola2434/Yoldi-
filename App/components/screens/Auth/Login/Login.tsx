@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { Meta } from "../../Providers/Meta/Meta";
-import { Heading } from "../../UI/Heading/Heading";
+import { Meta } from "../../../Providers/Meta/Meta";
+import { Heading } from "../../../UI/Heading/Heading";
 import { useAuthRedirect } from "../useAuthRedirect";
 import { FieldsLogin } from "./FieldsLogin/FieldsLogin";
 import style from "./Login.module.scss";

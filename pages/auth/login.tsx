@@ -1,8 +1,8 @@
-import { Login } from "@/App/components/screens/Login/Login";
+import { Login } from "@/App/components/screens/Auth/Login/Login";
 import { NextPage } from "next";
 
 const LoginPage: NextPage = () => {
-  return <Login/>;
+  return <Login />;
 };
 
 export default LoginPage;
