@@ -1,42 +1,30 @@
-import { FC } from "react";
-import style from "./FieldsRegister.module.scss";
-import { useForm } from "react-hook-form";
-import { IRegister } from "@/App/shared/interfaces/auth.interface";
-import { SubmitHandler } from "react-hook-form/dist/types";
 import { AuthField } from "@/App/components/shared/AuthField/AuthField";
-import {
-  HumanIcon,
-  LetterIcon,
-  LockIcon,
-} from "@/App/components/UI/Icons/Icons";
-
 import { Button } from "@/App/components/UI/Button/Button";
+import { LetterIcon, LockIcon } from "@/App/components/UI/Icons/Icons";
+import { ILogin } from "@/App/shared/interfaces/auth.interface";
 import { getRegexEmail } from "@/App/shared/regex/regex";
+import { FC } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import style from "./FieldsLogin.module.scss";
 
-export const FieldsRegister: FC = () => {
+export const FieldsLogin: FC = () => {
   const {
     register,
     reset,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<IRegister>({ mode: "onChange" });
-  const onSubmit: SubmitHandler<IRegister> = (data) => {
+  } = useForm<ILogin>({ mode: "onChange" });
+
+  const onSubmit: SubmitHandler<ILogin> = (data) => {
     alert(data);
     reset();
   };
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
       <AuthField
-        icon={<HumanIcon />}
-        error={errors.name}
-        placeholder="Имя"
-        {...register("name", { required: true })}
-      />
-      <AuthField
         icon={<LetterIcon />}
-        error={errors.email}
         placeholder="E-mail"
+        error={errors.email}
         {...register("email", {
           required: true,
           pattern: {
@@ -45,11 +33,12 @@ export const FieldsRegister: FC = () => {
           },
         })}
       />
+
       <AuthField
         icon={<LockIcon />}
+        placeholder="Пароль"
         error={errors.password}
         type={"password"}
-        placeholder="Пароль"
         {...register("password", {
           required: true,
           minLength: {
@@ -58,7 +47,7 @@ export const FieldsRegister: FC = () => {
           },
         })}
       />
-      <Button disabled={!isValid}>Создать аккаунт</Button>
+      <Button disabled={!isValid}>Войти</Button>
     </form>
   );
 };

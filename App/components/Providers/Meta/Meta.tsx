@@ -6,7 +6,7 @@ interface IMetaProps {
 }
 
 const getCurrentTitle = (title: string): string => {
-  return `${title} | Yoldi`;
+  return `${title} | Yoldi Agency`;
 };
 
 export const Meta: FC<PropsWithChildren<IMetaProps>> = ({
