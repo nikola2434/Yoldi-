@@ -12,6 +12,8 @@ import {
 
 import { Button } from "@/App/components/UI/Button/Button";
 import { getRegexEmail } from "@/App/shared/regex/regex";
+import { useAppSelector } from "@/App/hooks/useAppSelector";
+import { useAppDispatch } from "@/App/hooks/useAppDispatch";
 
 export const FieldsRegister: FC = () => {
   const {
@@ -20,8 +22,11 @@ export const FieldsRegister: FC = () => {
     handleSubmit,
     formState: { errors, isValid },
   } = useForm<IRegister>({ mode: "onChange" });
+
+  const { isLoading } = useAppSelector((state) => state.user);
+  const { register: authRegister } = useAppDispatch();
   const onSubmit: SubmitHandler<IRegister> = (data) => {
-    alert(data);
+    authRegister(data);
     reset();
   };
 
@@ -58,7 +63,7 @@ export const FieldsRegister: FC = () => {
           },
         })}
       />
-      <Button disabled={!isValid}>Создать аккаунт</Button>
+      <Button disabled={!isValid || isLoading}>Создать аккаунт</Button>
     </form>
   );
 };

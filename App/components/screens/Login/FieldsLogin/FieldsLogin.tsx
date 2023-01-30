@@ -1,6 +1,8 @@
 import { AuthField } from "@/App/components/shared/AuthField/AuthField";
 import { Button } from "@/App/components/UI/Button/Button";
 import { LetterIcon, LockIcon } from "@/App/components/UI/Icons/Icons";
+import { useAppDispatch } from "@/App/hooks/useAppDispatch";
+import { useAppSelector } from "@/App/hooks/useAppSelector";
 import { ILogin } from "@/App/shared/interfaces/auth.interface";
 import { getRegexEmail } from "@/App/shared/regex/regex";
 import { FC } from "react";
@@ -12,11 +14,15 @@ export const FieldsLogin: FC = () => {
     register,
     reset,
     handleSubmit,
+    setError,
     formState: { errors, isValid },
   } = useForm<ILogin>({ mode: "onChange" });
 
+  const { isLoading } = useAppSelector((state) => state.user);
+  const { login } = useAppDispatch();
+
   const onSubmit: SubmitHandler<ILogin> = (data) => {
-    alert(data);
+    login({ data, setError });
     reset();
   };
   return (

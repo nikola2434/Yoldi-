@@ -1,6 +1,6 @@
 @import "../../../../assets/constants.module.scss";
 
-.link_register {
+.link_login {
   @include get-text(16px);
   > span {
     color: $color_grey;

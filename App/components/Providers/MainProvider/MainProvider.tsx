@@ -1,13 +1,20 @@
+import { store } from "@/App/store/store";
 import { FC, PropsWithChildren } from "react";
+import { Provider } from "react-redux";
 import { Layout } from "../../layout/Layout";
 import { HeadProvider } from "../HeadProvider/HeadProvider";
+import { WindowProvider } from "./WindowProvider";
 
 export const MainProvider: FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
-      <HeadProvider>
-        <Layout>{children}</Layout>
-      </HeadProvider>
+      <Provider store={store}>
+        <HeadProvider>
+          <WindowProvider>
+            <Layout>{children}</Layout>
+          </WindowProvider>
+        </HeadProvider>
+      </Provider>
     </>
   );
 };
