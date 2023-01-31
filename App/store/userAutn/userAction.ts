@@ -1,4 +1,4 @@
-import { IUser } from '@/App/shared/interfaces/user.interface';
+import { IUser } from "@/App/shared/interfaces/user.interface";
 import { IRegister } from "@/App/shared/interfaces/auth.interface";
 import { IResponseLogin } from "./../../services/AuthApi/authApi.interface";
 import { ILogin } from "./../../shared/interfaces/auth.interface";
@@ -26,17 +26,21 @@ export const login = createAsyncThunk<
   }
 });
 
-export const register = createAsyncThunk<IUser, IRegister>(
-  "auth/register",
-  async ({ email, name, password }, thunkApi) => {
-    try {
-      const value = await authApi.register(email, password, name);
-      return value;
-    } catch (error) {
-      return thunkApi.rejectWithValue(error);
-    }
+export const register = createAsyncThunk<
+  IUser,
+  { data: IRegister; setError: UseFormSetError<IRegister> }
+>("auth/register", async ({ data, setError }, thunkApi) => {
+  try {
+    const value = await authApi.register(data.email, data.password, data.name);
+    return value;
+  } catch (error) {
+    setError("email", {
+      message: "Уже зарегистрирован",
+      type: "custom",
+    });
+    return thunkApi.rejectWithValue(error);
   }
-);
+});
 
 export const logout = createAsyncThunk("auth/logout", async () => {
   await authApi.logout();

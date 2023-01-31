@@ -1,25 +1,27 @@
-import { IImage } from "@/App/shared/interfaces/user.interface";
+import { IImage, IUser } from "@/App/shared/interfaces/user.interface";
+import { getAcceptFile } from "@/App/shared/regex/regex";
 import Image from "next/image";
 import { FC } from "react";
+import { PhotoIcon } from "../../UI/Icons/Icons";
 import style from "./UserAvatar.module.scss";
+import { useUploadFileAvatar } from "./useUploadAvatar";
 
 interface IUserAvatarProps {
-  avatar: IImage | null;
-  name: string;
+  user: IUser;
   isProfile?: boolean;
 }
 
 export const UserAvatar: FC<IUserAvatarProps> = ({
-  avatar,
-  name,
+  user,
   isProfile = false,
 }) => {
+  const { onChange } = useUploadFileAvatar(user);
   return (
     <div className={style.avatar}>
-      {avatar ? (
+      {user.image ? (
         <Image
-          src={avatar.url}
-          alt={name}
+          src={user.image.url}
+          alt={user.name}
           width={100}
           height={100}
           draggable={false}
@@ -27,11 +29,21 @@ export const UserAvatar: FC<IUserAvatarProps> = ({
           className={style.image}
         />
       ) : (
-        <div >
-          {name.slice(0, 1)}
+        <div>{user.name.slice(0, 1)}</div>
+      )}
+      {isProfile && (
+        <div className={style.file}>
+          <input
+            type={"file"}
+            id={"file"}
+            accept={getAcceptFile()}
+            onChange={(e) => onChange(e)}
+          />
+          <label htmlFor="file">
+            <PhotoIcon />
+          </label>
         </div>
       )}
-      {/* {isProfile && <input />} */}
     </div>
   );
 };

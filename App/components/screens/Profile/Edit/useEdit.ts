@@ -10,13 +10,14 @@ import { IRequestUpdateProfile } from "@/App/services/UserProfile/profileApit.in
 export const useEdit = (
   setValue: UseFormSetValue<IEditProfile>,
   setIsActiveModal: (prev: boolean) => void,
-  user: IUser
+  user: IUser,
+  isActive: boolean
 ) => {
   useEffect(() => {
     setValue("name", user.name);
     setValue("description", user.description || "");
     setValue("slug", user.slug);
-  }, [user, setValue]);
+  }, [user, setValue, isActive]);
 
   const { mutate } = useSWRConfig();
 
@@ -30,7 +31,7 @@ export const useEdit = (
       password: getLocalStorage("password"),
     };
     mutate("profile", profileApi.updateProfile(body));
-    setIsActiveModal(false)
+    setIsActiveModal(false);
   };
 
   return { onSubmit };

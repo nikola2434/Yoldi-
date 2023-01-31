@@ -19,4 +19,29 @@
     user-select: none;
     @include get-text(36px, 400);
   }
+  &:hover .file {
+    > label {
+      opacity: 1;
+    }
+  }
+  .file {
+    > input {
+      display: none;
+    }
+    > label {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 0;
+      left: 0;
+      background-color: black;
+      opacity: 0;
+      cursor: pointer;
+      border-radius: 100%;
+      transition: all 0.2s linear;
+    }
+  }
 }

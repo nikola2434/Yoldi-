@@ -14,7 +14,7 @@ export const Header: FC = () => {
         <Logo />
         <div>Разрабатываем и запускаем сложные веб проекты</div>
       </div>
-      {user ? <LinkProfile user={user} /> : <ButtonHeader />}
+      {user ? <LinkProfile  /> : <ButtonHeader />}
     </div>
   );
 };

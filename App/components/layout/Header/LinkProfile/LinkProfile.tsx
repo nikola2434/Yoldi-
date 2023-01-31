@@ -8,7 +8,7 @@ import { profileApi } from "@/App/services/UserProfile/profile.api";
 import { IUser } from "@/App/shared/interfaces/user.interface";
 
 export const LinkProfile: FC = () => {
-  const { data } = useSwr<IUser>("profile");
+  const { data } = useSwr<IUser>("profile", profileApi.getProfile);
 
   return (
     <Link href={getProfileUrl()} className={style.link}>

@@ -10,9 +10,9 @@ export const User: FC<{ user: IUser }> = ({ user }) => {
   return (
     <Meta title={user.name}>
       <div className={style.screen}>
-        <Cover cover={user.cover} />
+        <Cover user={user} />
         <div className={style.avatar}>
-          <UserAvatar avatar={user.image} name={user.name} />
+          <UserAvatar user={user} />
         </div>
         <div className={style.body}>
           <HeadingUser user={user} />

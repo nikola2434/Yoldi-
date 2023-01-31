@@ -19,7 +19,7 @@ import { Edit } from "./Edit/Edit";
 
 export const Profile: FC = () => {
   const { user } = useAppSelector((state) => state.user);
-  const { data} = useSwr("profile", profileApi.getProfile);
+  const { data } = useSwr("profile", profileApi.getProfile);
   const { push } = useRouter();
   const onClick = () => {
     logout();
@@ -32,13 +32,9 @@ export const Profile: FC = () => {
       <div className={style.screen}>
         {data ? (
           <div className={style.profile}>
-            <Cover cover={data.cover} isProfile />
+            <Cover user={data} isProfile />
             <div className={style.avatar}>
-              <UserAvatar
-                avatar={data.image}
-                name={data.name}
-                isProfile
-              />
+              <UserAvatar user={data} isProfile />
             </div>
             <div className={style.body}>
               <HeadingUser
@@ -52,7 +48,11 @@ export const Profile: FC = () => {
                 Выйти
               </IconButton>
               <Modal isActive={isActiveModal} setIsActive={setIsActiveModal}>
-                <Edit user={data}  setIsActiveModal={setIsActiveModal}/>
+                <Edit
+                  user={data}
+                  setIsActiveModal={setIsActiveModal}
+                  isActive={isActiveModal}
+                />
               </Modal>
             </div>
           </div>

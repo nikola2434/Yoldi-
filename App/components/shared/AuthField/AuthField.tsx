@@ -27,6 +27,7 @@ export const AuthField = forwardRef<HTMLInputElement, IAuthField>(
             className={style.eye}
           />
         )}
+        {error?.message && <div className={style.error}>{error.message}</div>}
       </div>
     );
   }

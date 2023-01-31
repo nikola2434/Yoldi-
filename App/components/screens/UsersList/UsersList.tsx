@@ -10,6 +10,7 @@ export const UsersList: FC<{ users: IUser[] }> = ({ users }) => {
     <Meta title="Пользователи">
       <div className={style.screen}>
         <div>
+          
           <Heading>Список аккаунтов</Heading>
           <div>
             {users.map((user) => (

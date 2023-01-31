@@ -20,6 +20,7 @@ export const FieldsRegister: FC = () => {
     register,
     reset,
     handleSubmit,
+    setError,
     formState: { errors, isValid },
   } = useForm<IRegister>({ mode: "onChange" });
 
@@ -27,7 +28,7 @@ export const FieldsRegister: FC = () => {
   const { register: authRegister } = useAppDispatch();
   const onSubmit: SubmitHandler<IRegister> = (data) => {
     localStorage.setItem("password", JSON.stringify(data.password)); // вот тут мне приходится сохранять пароль, чтобы отправлять запросы на сервер по редактированию провеля
-    authRegister(data);
+    authRegister({ data, setError });
     reset();
   };
 

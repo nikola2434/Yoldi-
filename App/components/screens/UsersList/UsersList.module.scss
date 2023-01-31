@@ -4,9 +4,11 @@
   padding-top: $height_navigation + 50px;
   padding-right: 240px;
   padding-left: 240px;
+  background-color: white;
   > div {
     display: block;
     width: 100%;
+
     > div {
       > a:first-child {
         border-top: $color_strokes-secondary 1px solid;
@@ -26,4 +28,3 @@
     padding-left: 20px;
   }
 }
-

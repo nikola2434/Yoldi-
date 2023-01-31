@@ -17,10 +17,11 @@ export interface IEditProfile {
 
 interface IEditProps {
   user: IUser;
-  setIsActiveModal: (prev:boolean) => void
+  isActive: boolean;
+  setIsActiveModal: (prev: boolean) => void;
 }
 
-export const Edit: FC<IEditProps> = ({ user, setIsActiveModal }) => {
+export const Edit: FC<IEditProps> = ({ user, setIsActiveModal, isActive }) => {
   const {
     register,
     handleSubmit,
@@ -28,7 +29,7 @@ export const Edit: FC<IEditProps> = ({ user, setIsActiveModal }) => {
     formState: { errors },
   } = useForm<IEditProfile>();
 
-  const { onSubmit } = useEdit(setValue, setIsActiveModal, user);
+  const { onSubmit } = useEdit(setValue, setIsActiveModal, user, isActive);
 
   return (
     <div className={style.edit}>
@@ -62,7 +63,9 @@ export const Edit: FC<IEditProps> = ({ user, setIsActiveModal }) => {
           />
         </div>
         <div className={style.buttons}>
-          <ButtonForm look="light">Отмена</ButtonForm>
+          <ButtonForm look="light" onClick={() => setIsActiveModal(false)}>
+            Отмена
+          </ButtonForm>
           <ButtonForm look="dark">Сохранить</ButtonForm>
         </div>
       </form>

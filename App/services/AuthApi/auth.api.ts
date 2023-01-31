@@ -17,9 +17,9 @@ export const authApi = {
       .then((data) => data.data);
     if (value) saveTokenCookie(value.value);
     const user = await profileApi.getProfile();
-    if (user) saveToLocalStorage(user.data);
+    if (user) saveToLocalStorage(user);
 
-    return user.data;
+    return user;
   },
 
   async register(email: string, password: string, name: string) {
@@ -31,9 +31,7 @@ export const authApi = {
       })
       .then((data) => data.data);
     if (value) saveTokenCookie(value.value);
-    const user = await profileApi
-      .getProfile()
-      .then((data) => data.data);
+    const user = await profileApi.getProfile().then((data) => data);
     if (value) saveToLocalStorage(user);
     return user;
   },
@@ -41,5 +39,6 @@ export const authApi = {
   logout() {
     removeTokenCookie();
     localStorage.removeItem("user");
+    localStorage.removeItem("password");
   },
 };

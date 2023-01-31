@@ -7,12 +7,14 @@
   height: 100vh;
   background-color: $color_background-secondary;
   .login {
+    
     width: 400px;
     background-color: white;
     box-sizing: border-box;
     padding: 30px;
     border-radius: 5px;
     border: $color_strokes-secondary 1px solid;
+
   }
 }
 
