@@ -4,6 +4,7 @@ import { FC } from "react";
 import { Logo } from "../../UI/Logo/Logo";
 import { ButtonHeader } from "./ButtonHeader/ButtonHeader";
 import style from "./Header.module.scss";
+import { LinkProfile } from "./LinkProfile/LinkProfile";
 
 export const Header: FC = () => {
   const { user } = useAppSelector((state) => state.user);
@@ -13,13 +14,7 @@ export const Header: FC = () => {
         <Logo />
         <div>Разрабатываем и запускаем сложные веб проекты</div>
       </div>
-      {user ? (
-        <Link href={""}>
-          <div>account</div>
-        </Link>
-      ) : (
-        <ButtonHeader />
-      )}
+      {user ? <LinkProfile user={user} /> : <ButtonHeader />}
     </div>
   );
 };

@@ -6,11 +6,13 @@ import style from "./HeadingUser.module.scss";
 
 interface IHeadingUserProps {
   user: IUser;
+  setIsActive?: (prev: boolean) => void;
   isProfile?: boolean;
 }
 
 export const HeadingUser: FC<IHeadingUserProps> = ({
   user,
+  setIsActive = () => {},
   isProfile = false,
 }) => {
   return (
@@ -20,7 +22,9 @@ export const HeadingUser: FC<IHeadingUserProps> = ({
         <div className={style.email}>{user.email}</div>
       </div>
       {isProfile && (
-        <IconButton icon={<PencilIcon />}>Редактировать</IconButton>
+        <IconButton icon={<PencilIcon />} onClick={() => setIsActive(true)}>
+          Редактировать
+        </IconButton>
       )}
     </div>
   );

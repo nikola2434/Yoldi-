@@ -26,6 +26,7 @@ export const FieldsRegister: FC = () => {
   const { isLoading } = useAppSelector((state) => state.user);
   const { register: authRegister } = useAppDispatch();
   const onSubmit: SubmitHandler<IRegister> = (data) => {
+    localStorage.setItem("password", JSON.stringify(data.password)); // вот тут мне приходится сохранять пароль, чтобы отправлять запросы на сервер по редактированию провеля
     authRegister(data);
     reset();
   };

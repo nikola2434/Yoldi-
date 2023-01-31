@@ -13,7 +13,7 @@ export const UsersList: FC<{ users: IUser[] }> = ({ users }) => {
           <Heading>Список аккаунтов</Heading>
           <div>
             {users.map((user) => (
-              <UsersListItem user={user} key={user.email} />
+              <UsersListItem userProps={user} key={user.email} />
             ))}
           </div>
         </div>

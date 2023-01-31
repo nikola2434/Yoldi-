@@ -1,0 +1,37 @@
+import { getLocalStorage } from "@/App/utils/local-storage.utils";
+import { profileApi } from "@/App/services/UserProfile/profile.api";
+import { IUser } from "@/App/shared/interfaces/user.interface";
+import { useEffect } from "react";
+import { IEditProfile } from "./Edit";
+import { SubmitHandler, UseFormSetValue } from "react-hook-form";
+import { useSWRConfig } from "swr";
+import { IRequestUpdateProfile } from "@/App/services/UserProfile/profileApit.interface";
+
+export const useEdit = (
+  setValue: UseFormSetValue<IEditProfile>,
+  setIsActiveModal: (prev: boolean) => void,
+  user: IUser
+) => {
+  useEffect(() => {
+    setValue("name", user.name);
+    setValue("description", user.description || "");
+    setValue("slug", user.slug);
+  }, [user, setValue]);
+
+  const { mutate } = useSWRConfig();
+
+  const onSubmit: SubmitHandler<IEditProfile> = (data) => {
+    const body: IRequestUpdateProfile = {
+      name: data.name,
+      slug: data.slug,
+      description: data.description,
+      coverId: user.cover?.id || null,
+      imageId: user.image?.id || null,
+      password: getLocalStorage("password"),
+    };
+    mutate("profile", profileApi.updateProfile(body));
+    setIsActiveModal(false)
+  };
+
+  return { onSubmit };
+};

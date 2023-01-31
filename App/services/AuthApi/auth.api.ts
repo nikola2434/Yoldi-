@@ -16,7 +16,7 @@ export const authApi = {
       })
       .then((data) => data.data);
     if (value) saveTokenCookie(value.value);
-    const user = await profileApi.getProfile(value.value);
+    const user = await profileApi.getProfile();
     if (user) saveToLocalStorage(user.data);
 
     return user.data;
@@ -32,7 +32,7 @@ export const authApi = {
       .then((data) => data.data);
     if (value) saveTokenCookie(value.value);
     const user = await profileApi
-      .getProfile(value.value)
+      .getProfile()
       .then((data) => data.data);
     if (value) saveToLocalStorage(user);
     return user;

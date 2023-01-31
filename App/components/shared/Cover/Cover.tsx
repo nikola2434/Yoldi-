@@ -12,7 +12,7 @@ export const Cover: FC<ICoverProps> = ({ cover, isProfile = false }) => {
   return (
     <div className={style.cover}>
       {cover ? <img src={cover.url} alt="" draggable={false} /> : <div />}
-      {isProfile && <input />}
+      {/* {isProfile && <input />} */}
     </div>
   );
 };

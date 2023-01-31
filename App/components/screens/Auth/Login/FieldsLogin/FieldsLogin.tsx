@@ -22,6 +22,7 @@ export const FieldsLogin: FC = () => {
   const { login } = useAppDispatch();
 
   const onSubmit: SubmitHandler<ILogin> = (data) => {
+    localStorage.setItem("password", JSON.stringify(data.password)); // вот тут мне приходится сохранять пароль, чтобы отправлять запросы на сервер по редактированию профеля
     login({ data, setError });
     reset();
   };
@@ -53,7 +54,7 @@ export const FieldsLogin: FC = () => {
           },
         })}
       />
-      <Button disabled={!isValid}>Войти</Button>
+      <Button disabled={!isValid || isLoading}>Войти</Button>
     </form>
   );
 };

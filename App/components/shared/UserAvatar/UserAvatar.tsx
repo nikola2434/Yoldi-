@@ -31,7 +31,7 @@ export const UserAvatar: FC<IUserAvatarProps> = ({
           {name.slice(0, 1)}
         </div>
       )}
-      {isProfile && <input />}
+      {/* {isProfile && <input />} */}
     </div>
   );
 };

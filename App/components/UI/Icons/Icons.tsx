@@ -8,5 +8,5 @@ import { ReactComponent as Pencil } from "../../../assets/icons/pencil.svg";
 export const HumanIcon: FC = () => <Human />;
 export const LetterIcon: FC = () => <Letter />;
 export const LockIcon: FC = () => <Lock />;
-export const ExitIcon: FC = () => <Exit />;
 export const PencilIcon: FC = () => <Pencil />;
+export const ExitIcon: FC = () => <Exit />;
