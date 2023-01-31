@@ -12,7 +12,7 @@
   transition: all 0.2s linear;
   &:disabled {
     background-color: $color_strokes-primary;
-    color: $background-secondary;
+    color: $color_background-secondary;
     cursor: default;
   }
 }

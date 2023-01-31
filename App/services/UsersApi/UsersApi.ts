@@ -5,4 +5,10 @@ export const UsersApi = {
   async getUsers() {
     return await classicAxios.get<IUser[]>("user").then((data) => data.data);
   },
+
+  async getUser(slug: string) {
+    return await classicAxios
+      .get<IUser>(`user/${slug}`)
+      .then((data) => data.data);
+  },
 };

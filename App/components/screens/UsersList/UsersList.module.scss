@@ -8,10 +8,10 @@
     display: block;
     width: 100%;
     > div {
-      > div:first-child {
+      > a:first-child {
         border-top: $color_strokes-secondary 1px solid;
       }
-      > div:last-child {
+      > a:last-child {
         margin-bottom: 100px;
       }
     }

@@ -1,4 +1,9 @@
-import { removeTokenCookie, saveToLocalStorage } from "./auth-helper.api";
+import { profileApi } from "./../UserProfile/profile.api";
+import {
+  removeTokenCookie,
+  saveTokenCookie,
+  saveToLocalStorage,
+} from "./auth-helper.api";
 import { IResponseLogin } from "./authApi.interface";
 import { classicAxios } from "./../axios/axios";
 
@@ -10,8 +15,11 @@ export const authApi = {
         password,
       })
       .then((data) => data.data);
-    if (value) saveToLocalStorage(value.value);
-    return value;
+    if (value) saveTokenCookie(value.value);
+    const user = await profileApi.getProfile(value.value);
+    if (user) saveToLocalStorage(user.data);
+
+    return user.data;
   },
 
   async register(email: string, password: string, name: string) {
@@ -22,13 +30,16 @@ export const authApi = {
         name,
       })
       .then((data) => data.data);
-    debugger;
-    if (value) saveToLocalStorage(value.value);
-    return value;
+    if (value) saveTokenCookie(value.value);
+    const user = await profileApi
+      .getProfile(value.value)
+      .then((data) => data.data);
+    if (value) saveToLocalStorage(user);
+    return user;
   },
 
   logout() {
     removeTokenCookie();
-    if (typeof window !== "undefined") localStorage.removeItem("key");
+    localStorage.removeItem("user");
   },
 };

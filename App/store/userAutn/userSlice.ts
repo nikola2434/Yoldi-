@@ -5,7 +5,7 @@ import { login, logout, register } from "./userAction";
 
 const initialState: IInitialState = {
   isLoading: false,
-  key: getLocalStorage("key"),
+  user: getLocalStorage("user"),
 };
 
 export const userSlice = createSlice({
@@ -19,25 +19,25 @@ export const userSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.key = payload.value;
+        state.user = payload;
       })
       .addCase(login.rejected, (state) => {
         state.isLoading = false;
-        state.key = null;
+        state.user = null;
       })
       .addCase(register.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(register.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.key = payload.value;
+        state.user = payload;
       })
       .addCase(register.rejected, (state) => {
         state.isLoading = false;
-        state.key = null;
+        state.user = null;
       })
       .addCase(logout.fulfilled, (state) => {
-        state.key = null;
+        state.user = null;
       });
   },
 });

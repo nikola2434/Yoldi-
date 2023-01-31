@@ -1,3 +1,4 @@
+import { IUser } from "@/App/shared/interfaces/user.interface";
 import Cookies from "js-cookie";
 
 export const saveTokenCookie = (value: string) => {
@@ -8,6 +9,6 @@ export const removeTokenCookie = () => {
   Cookies.remove("key");
 };
 
-export const saveToLocalStorage = (value: string) => {
-  if (typeof window !== "undefined") localStorage.setItem("key", value);
+export const saveToLocalStorage = (user: IUser) => {
+  localStorage.setItem("user", JSON.stringify(user));
 };

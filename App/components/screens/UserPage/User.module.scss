@@ -1,0 +1,28 @@
+@import "../../../assets/constants.module.scss";
+.screen {
+  padding-top: $height_navigation;
+  width: 100%;
+  position: relative;
+  .avatar {
+    position: absolute;
+    top: 150px + $height_navigation;
+    left: 240px;
+  }
+  .body {
+    padding-left: 240px;
+    padding-right: 240px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .screen {
+    .avatar {
+      left: 30px;
+    }
+    .body {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+}

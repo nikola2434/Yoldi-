@@ -1,6 +1,6 @@
-
+import { IUser } from "@/App/shared/interfaces/user.interface";
 
 export interface IInitialState {
-  key: string | null;
+  user: IUser | null;
   isLoading: boolean;
 }

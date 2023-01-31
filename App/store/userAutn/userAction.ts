@@ -1,3 +1,4 @@
+import { IUser } from '@/App/shared/interfaces/user.interface';
 import { IRegister } from "@/App/shared/interfaces/auth.interface";
 import { IResponseLogin } from "./../../services/AuthApi/authApi.interface";
 import { ILogin } from "./../../shared/interfaces/auth.interface";
@@ -6,7 +7,7 @@ import { UseFormSetError } from "react-hook-form";
 import { authApi } from "@/App/services/AuthApi/auth.api";
 
 export const login = createAsyncThunk<
-  IResponseLogin,
+  IUser,
   { data: ILogin; setError: UseFormSetError<ILogin> }
 >("auth/login", async ({ setError, data }, thunkApi) => {
   try {
@@ -25,7 +26,7 @@ export const login = createAsyncThunk<
   }
 });
 
-export const register = createAsyncThunk<IResponseLogin, IRegister>(
+export const register = createAsyncThunk<IUser, IRegister>(
   "auth/register",
   async ({ email, name, password }, thunkApi) => {
     try {

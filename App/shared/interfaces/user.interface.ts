@@ -2,6 +2,7 @@ export interface IUser {
   name: string;
   email: string;
   slug: string;
+  description: string | null;
   image: IImage | null;
   cover: IImage | null;
 }

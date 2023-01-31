@@ -1,0 +1,21 @@
+@import "../../../assets/constants.module.scss";
+
+.cover {
+  width: 100%;
+  min-width: 100vw;
+  height: 200px;
+
+  > img {
+    width: 100%;
+    height: 200px;
+    min-width: 100vw;
+    object-fit: cover;
+  }
+  > div {
+    background-color: $color_background-secondary;
+    width: 100%;
+    height: 200px;
+    border-bottom: 1px solid $color_strokes-secondary;
+    box-sizing: border-box;
+  }
+}

@@ -7,3 +7,6 @@ export const classicAxios = axios.create({
 export const getContentType = () => {
   return { "Content-Type": "application/json" };
 };
+export const getKeyHeaders = (key: string) => {
+  return { "X-API-KEY": key };
+};

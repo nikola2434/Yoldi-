@@ -6,14 +6,14 @@ import { ButtonHeader } from "./ButtonHeader/ButtonHeader";
 import style from "./Header.module.scss";
 
 export const Header: FC = () => {
-  const { key } = useAppSelector((state) => state.user);
+  const { user } = useAppSelector((state) => state.user);
   return (
     <div className={style.header}>
       <div className={style.title}>
         <Logo />
         <div>Разрабатываем и запускаем сложные веб проекты</div>
       </div>
-      {key ? (
+      {user ? (
         <Link href={""}>
           <div>account</div>
         </Link>

@@ -1,11 +1,11 @@
-@import "../../../assets/constants.module.scss";
+@import "../../../../assets/constants.module.scss";
 .login_screen {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100vh;
-  background-color: $background-secondary;
+  background-color: $color_background-secondary;
   .login {
     width: 400px;
     background-color: white;
